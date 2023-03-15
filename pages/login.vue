@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDialogPluginComponent } from 'quasar'
+import { useDialogPluginComponent, QForm } from 'quasar'
 
 defineEmits([...useDialogPluginComponent.emits])
 
@@ -9,6 +9,8 @@ const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
 onMounted(() => {
   dialogRef.value.show()
 })
+
+const form = ref<QForm | undefined>()
 
 const emailPattern =
   /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
@@ -30,9 +32,9 @@ function handleSubmit() {
 
 <template>
   <q-dialog ref="dialogRef" @hide="onDialogHide">
-    <q-card class="column items-center q-pa-sm">
-      <q-card-section class="column items-center">
-        <q-form @submit.prevent="handleSubmit">
+    <q-card class="q-dialog-plugin column items-center q-pa-sm">
+      <q-form ref="form" @submit.prevent="handleSubmit">
+        <q-card-section class="column items-center">
           <span class="text-h6">Login</span>
 
           <q-input
@@ -48,10 +50,13 @@ function handleSubmit() {
             v-model="password"
             label="Password"
           />
-          <q-btn @click="onDialogCancel" color="grey" label="Cancel" />
-          <q-btn type="submit" color="primary" label="Login" />
-        </q-form>
-      </q-card-section>
+
+          <q-card-actions>
+            <q-btn @click="onDialogCancel" color="grey" label="Cancel" />
+            <q-btn type="submit" color="primary" label="Login" />
+          </q-card-actions>
+        </q-card-section>
+      </q-form>
     </q-card>
   </q-dialog>
 </template>
