@@ -37,9 +37,9 @@ function cancel() {
 }
 
 onMounted(() => {
-  // Si estamos en la pagina de /login
+  // Si estamos en la pagina de /login,
   if (route.path === '/login') {
-    // Mostrar el Dialog.
+    // mostrar el Dialog.
     dialogRef.value.show()
   }
 
