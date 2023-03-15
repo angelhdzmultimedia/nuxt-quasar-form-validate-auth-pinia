@@ -18,7 +18,7 @@ const email = ref<string>('')
 const password = ref<string>('')
 const route = useRoute()
 
-// Validaciones (Validations)
+// Validaciones de Campos de Entrada (Input Fields Validations)
 
 const emailPattern =
   /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
@@ -43,6 +43,13 @@ function cancel() {
     alert('Como estamos en /login, redirigir a /.')
     return navigateTo('/')
   }
+}
+
+function reset() {
+  // Limpiar los campos
+  email.value = password.value = ''
+  // Reiniciar las validaciones de los campos
+  form.value?.reset()
 }
 
 // Enlaces de Ciclo de Vida (Lifecycle Hooks)
@@ -91,6 +98,7 @@ onMounted(() => {
             v-model="password"
             label="Password"
           />
+          <q-btn label="Reset" @click="reset" />
 
           <q-card-actions>
             <q-btn @click="cancel" color="grey" label="Cancel" />
