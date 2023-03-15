@@ -6,6 +6,7 @@
       <q-toolbar>
         <q-btn icon="home" to="/" />
         <q-toolbar-title>App </q-toolbar-title>
+        <q-btn text-color="primary" color="white" to="/login" label="Login" />
       </q-toolbar>
     </q-header>
 

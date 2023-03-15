@@ -28,10 +28,30 @@ function handleSubmit() {
   onDialogOK()
   return navigateTo('/')
 }
+
+function cancel() {
+  onDialogCancel()
+  const route = useRoute()
+  if (route.path === '/login') {
+    alert('Como estamos en /login, redirigir a /.')
+    return navigateTo('/')
+  }
+}
 </script>
 
 <template>
-  <q-dialog ref="dialogRef" @hide="onDialogHide">
+  <q-dialog
+    ref="dialogRef"
+    @hide="onDialogHide"
+    :persistent="$route.path === '/login'"
+  >
+    <div class="column">
+      <span>Ruta Actual: {{ $route.path }}</span>
+      <span
+        >pages/login.vue como:
+        {{ $route.path === '/' ? 'Dialog' : 'Router Page' }}</span
+      >
+    </div>
     <q-card class="q-dialog-plugin column items-center q-pa-sm">
       <q-form ref="form" @submit.prevent="handleSubmit">
         <q-card-section class="column items-center">
@@ -52,7 +72,7 @@ function handleSubmit() {
           />
 
           <q-card-actions>
-            <q-btn @click="onDialogCancel" color="grey" label="Cancel" />
+            <q-btn @click="cancel" color="grey" label="Cancel" />
             <q-btn type="submit" color="primary" label="Login" />
           </q-card-actions>
         </q-card-section>
