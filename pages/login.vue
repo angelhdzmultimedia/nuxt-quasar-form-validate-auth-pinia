@@ -2,8 +2,8 @@
 // Importaciones (Imports)
 import { useDialogPluginComponent, QForm } from 'quasar'
 
-// Propiedades Recibidas (Props)
-const props = defineProps({})
+// Propiedades "Recibidas del Componente Padre" (Props)
+const props = defineProps<{}>()
 
 // Emisores de Eventos (Event Emitters)
 defineEmits([...useDialogPluginComponent.emits])
