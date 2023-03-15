@@ -6,10 +6,6 @@ defineEmits([...useDialogPluginComponent.emits])
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
   useDialogPluginComponent()
 
-onMounted(() => {
-  dialogRef.value.show()
-})
-
 const form = ref<QForm | undefined>()
 
 const emailPattern =
@@ -21,6 +17,8 @@ const isRequired = (value) => !!value || 'Campo requerido'
 const email = ref<string>('')
 const password = ref<string>('')
 
+const route = useRoute()
+
 function handleSubmit() {
   // Hacer el login de Pinia a la API
   // Si todo salio bien, cerrar el Dialog
@@ -31,12 +29,24 @@ function handleSubmit() {
 
 function cancel() {
   onDialogCancel()
-  const route = useRoute()
+
   if (route.path === '/login') {
     alert('Como estamos en /login, redirigir a /.')
     return navigateTo('/')
   }
 }
+
+onMounted(() => {
+  // Si estamos en la pagina de /login
+  if (route.path === '/login') {
+    // Mostrar el Dialog.
+    dialogRef.value.show()
+  }
+
+  // Sino, quiere decir que estamos en cualquier otra pagina,
+  // y para que el dialog se abra como popup, hay que llamar
+  // Dialog.create().
+})
 </script>
 
 <template>
