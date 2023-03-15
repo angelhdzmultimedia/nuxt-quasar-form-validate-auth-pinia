@@ -1,23 +1,28 @@
 <script setup lang="ts">
+// Imports
 import { useDialogPluginComponent, QForm } from 'quasar'
 
+// Emits
 defineEmits([...useDialogPluginComponent.emits])
+
+// Fields
 
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
   useDialogPluginComponent()
 
 const form = ref<QForm | undefined>()
+const email = ref<string>('')
+const password = ref<string>('')
+const route = useRoute()
 
+// Validaciones
 const emailPattern =
   /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
 
 const isEmail = (value) => !!emailPattern.test(value) || 'Email no valido'
 const isRequired = (value) => !!value || 'Campo requerido'
 
-const email = ref<string>('')
-const password = ref<string>('')
-
-const route = useRoute()
+// Métodos
 
 function handleSubmit() {
   // Hacer el login de Pinia a la API
@@ -35,6 +40,8 @@ function cancel() {
     return navigateTo('/')
   }
 }
+
+// Lifecycle Hooks
 
 onMounted(() => {
   // Si estamos en la pagina de /login,
