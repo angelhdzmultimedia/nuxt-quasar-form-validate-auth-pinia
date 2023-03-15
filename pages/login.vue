@@ -25,7 +25,7 @@ const emailPattern =
 const isEmail = (value) => !!emailPattern.test(value) || 'Email no valido'
 const isRequired = (value) => !!value || 'Campo requerido'
 
-// Métodos
+// Métodos (Methods)
 
 function handleSubmit() {
   // Hacer el login de Pinia a la API
@@ -44,7 +44,7 @@ function cancel() {
   }
 }
 
-// Lifecycle Hooks
+// Enlaces de Ciclo de Vida (Lifecycle Hooks)
 
 onMounted(() => {
   // Si estamos en la pagina de /login,
