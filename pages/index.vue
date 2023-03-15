@@ -4,7 +4,6 @@ import { Dialog } from 'quasar'
 import LoginPage from '~/pages/login.vue'
 
 // Métodos (Methods)
-
 function displayLoginForm() {
   Dialog.create({
     component: LoginPage,

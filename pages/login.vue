@@ -19,6 +19,7 @@ const password = ref<string>('')
 const route = useRoute()
 
 // Validaciones (Validations)
+
 const emailPattern =
   /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
 
@@ -30,7 +31,7 @@ const isRequired = (value) => !!value || 'Campo requerido'
 function handleSubmit() {
   // Hacer el login de Pinia a la API
   // Si todo salio bien, cerrar el Dialog
-  // Y navegar a Dashboard
+  // y navegar a home. Si no, mostrar error.
   onDialogOK()
   return navigateTo('/')
 }
