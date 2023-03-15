@@ -1,11 +1,14 @@
 <script setup lang="ts">
-// Imports
+// Importaciones (Imports)
 import { useDialogPluginComponent, QForm } from 'quasar'
 
-// Emits
+// Propiedades Recibidas (Props)
+const props = defineProps({})
+
+// Emisores de Eventos (Event Emitters)
 defineEmits([...useDialogPluginComponent.emits])
 
-// Fields
+// Campos (Fields)
 
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
   useDialogPluginComponent()
@@ -15,7 +18,7 @@ const email = ref<string>('')
 const password = ref<string>('')
 const route = useRoute()
 
-// Validaciones
+// Validaciones (Validations)
 const emailPattern =
   /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/
 
