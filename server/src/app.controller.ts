@@ -1,6 +1,6 @@
-import { Controller, Get, Redirect } from '@nestjs/common'
+import { Controller, Get, Logger, Redirect } from '@nestjs/common'
 
-@Controller('app')
+@Controller('')
 export class AppController {
   constructor() {}
 
@@ -8,5 +8,7 @@ export class AppController {
   @Redirect(
     'https://nuxtstarter2bxzgq-iy0j--3000.local-credentialless.webcontainer.io'
   )
-  public index() {}
+  public index() {
+    Logger.log('index app')
+  }
 }

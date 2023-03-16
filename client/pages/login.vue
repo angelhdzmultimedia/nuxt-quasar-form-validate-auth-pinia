@@ -17,6 +17,8 @@ const form = ref<QForm | undefined>()
 const email = ref<string>('')
 const password = ref<string>('')
 const route = useRoute()
+const $q = useQuasar()
+const auth = useAuthStore()
 
 // Validaciones de Campos de Entrada (Input Fields Validations)
 
@@ -28,12 +30,17 @@ const isRequired = (value) => !!value || 'Campo requerido'
 
 // Métodos (Methods)
 
-function handleSubmit() {
-  // Hacer el login de Pinia a la API
-  // Si todo salio bien, cerrar el Dialog
-  // y navegar a home. Si no, mostrar error.
-  onDialogOK()
-  return navigateTo('/')
+async function handleSubmit() {
+  try {
+    await auth.login(email.value, password.value)
+    onDialogOK()
+    return navigateTo('/')
+  } catch (error: unknown) {
+    $q.notify({
+      message: error.message,
+      type: 'negative',
+    })
+  }
 }
 
 function cancel() {
