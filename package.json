@@ -19,14 +19,16 @@
   "keywords": [],
   "contributors": [],
   "scripts": {
-    "dev:server": "pnpm -C server start:dev",
-    "dev:client": "pnpm -C client dev",
+    "start": "concurrently \"pnpm dev:server\" \"pnpm dev:client\"",
+    "dev:server": "pnpm -C server install && pnpm -C server start",
+    "dev:client": "pnpm -C client install && pnpm -C client dev",
     "clean:client": "rimraf client/.nuxt client/node_modules client/pnpm-lock.yaml",
     "clean:Server": "rimraf server/node_modules server/pnpm-lock.yaml",
     "clean": " rimraf node_modules pnpm-lock.yaml"
   },
   "dependencies": {
     "@nestjs/cli": "^9.2.0",
+    "concurrently": "^7.6.0",
     "rimraf": "^4.4.0",
     "typescript": "^4.9.5"
   }

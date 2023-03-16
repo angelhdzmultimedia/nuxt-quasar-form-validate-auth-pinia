@@ -13,11 +13,10 @@ async function bootstrap() {
     })
   )
   app.enableCors({
-    origin:
-      'https://nuxtstarter2bxzgq-iy0j--3000.local-credentialless.webcontainer.io',
+    origin: '*',
     credentials: true,
   })
- // app.setGlobalPrefix('api')
+  // app.setGlobalPrefix('api')
   await app.listen(5000)
 }
 bootstrap()

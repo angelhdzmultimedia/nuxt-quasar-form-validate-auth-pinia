@@ -6,7 +6,7 @@ export class AppController {
 
   @Get()
   @Redirect(
-    'https://nuxtstarter2bxzgq-iy0j--3000.local-credentialless.webcontainer.io'
+    'https://nuxtstarter2bxzgq-iy0j--3000.local-credentialless.webcontainer.io',
   )
   public index() {
     Logger.log('index app')
