@@ -1,20 +1,33 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "HOST=0.0.0.0 nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "clean": "rimraf node_modules yarn.lock package-lock.json .nuxt pnpm-lock.yaml"
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
   },
-  "devDependencies": {
-    "nuxt": "^3.3.1"
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "contributors": [],
+  "scripts": {
+    "dev:server": "pnpm -C server start:dev",
+    "dev:client": "pnpm -C client dev",
+    "clean:client": "rimraf client/.nuxt client/node_modules client/pnpm-lock.yaml",
+    "clean:Server": "rimraf server/node_modules server/pnpm-lock.yaml",
+    "clean": " rimraf node_modules pnpm-lock.yaml"
   },
   "dependencies": {
-    "@quasar/extras": "^1.15.11",
-    "nuxt-quasar-ui": "^1.0.3",
-    "quasar": "^2.11.7",
-    "rimraf": "^4.4.0"
+    "@nestjs/cli": "^9.2.0",
+    "rimraf": "^4.4.0",
+    "typescript": "^4.9.5"
   }
 }

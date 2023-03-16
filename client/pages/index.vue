@@ -1,11 +1,13 @@
 <script setup lang="ts">
 // Importaciones (Imports)
-import { Dialog } from 'quasar'
 import LoginPage from '~/pages/login.vue'
+
+// Fields
+const $q = useQuasar()
 
 // Métodos (Methods)
 function displayLoginForm() {
-  Dialog.create({
+  $q.dialog({
     component: LoginPage,
   })
 }

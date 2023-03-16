@@ -1,11 +1,12 @@
 <script setup lang="ts">
 // Importaciones (Imports)
-import { Dark } from 'quasar'
 
+// Campos (Fields)
+const $q = useQuasar()
 // Enlaces de Ciclo de Vida (Lifecycle Hooks)
 
 onMounted(() => {
-  Dark.set(true)
+  $q.dark.set(true)
 })
 </script>
 
