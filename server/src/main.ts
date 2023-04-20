@@ -10,10 +10,10 @@ async function bootstrap() {
       cookie: { maxAge: 60000 },
       resave: false,
       saveUninitialized: false,
-    })
+    }),
   )
   app.enableCors({
-    origin: '*',
+    origin: ['https://localhost:3000'],
     credentials: true,
   })
   // app.setGlobalPrefix('api')

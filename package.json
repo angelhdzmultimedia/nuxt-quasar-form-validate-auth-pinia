@@ -20,7 +20,7 @@
   "contributors": [],
   "scripts": {
     "start": "concurrently \"pnpm dev:server\" \"pnpm dev:client\"",
-    "dev:server": "pnpm -C server install && pnpm -C server start",
+    "dev:server": "pnpm -C server install && pnpm -C server start:dev",
     "dev:client": "pnpm -C client install && pnpm -C client dev",
     "clean:client": "rimraf client/.nuxt client/node_modules client/pnpm-lock.yaml",
     "clean:Server": "rimraf server/node_modules server/pnpm-lock.yaml",

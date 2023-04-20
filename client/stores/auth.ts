@@ -8,7 +8,6 @@ export const useAuthStore = defineStore('auth', () => {
           method: 'post',
           body: { email, password },
           mode: 'cors',
-          credentials: 'include',
         })
         resolve(data)
       } catch (error: unknown) {

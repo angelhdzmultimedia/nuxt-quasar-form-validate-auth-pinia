@@ -1,9 +1,10 @@
 import { join } from 'node:path'
 import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs'
+import { randomUUID } from 'node:crypto'
 
 class Model<T> {
   public _baseUrl: string | undefined
-  public _fileName: string | undefined
+  public _fileName: string = ''
 
   constructor(name: string) {
     this._baseUrl = join(process.cwd(), 'database')
@@ -17,8 +18,8 @@ class Model<T> {
     writeFileSync(this._fileName, JSON.stringify([]))
   }
 
-  public findOne<K extends keyof Partial<T>>(filter: Partial<T>) {
-    const collection: T[] = JSON.parse(readFileSync(this._fileName).toString())
+  public async findOne<K extends keyof Partial<(T & {id: string})>>(filter: Partial<(T & {id: string})>): Promise<(T & {id: string}) | undefined> {
+    const collection: (T & {id: string})[] = JSON.parse(readFileSync(this._fileName).toString())
 
     return collection.find((item) => {
       const keys: K[] = Object.keys(filter) as K[]
@@ -26,10 +27,15 @@ class Model<T> {
     })
   }
 
-  public create(data: T) {
-    const collection: T[] = JSON.parse(readFileSync(this._fileName).toString())
-    collection.push(data)
+  public async create(data: T): Promise<T> {
+    const collection: (T & {id: string})[] = JSON.parse(readFileSync(this._fileName).toString())
+    const createdItem = {
+      ...data,
+      id: randomUUID()
+    }
+    collection.push(createdItem)
     writeFileSync(this._fileName, JSON.stringify(collection))
+    return createdItem
   }
 }
 
